@@ -6,8 +6,25 @@ librerias de pandas para resolver las preguntas.
 """
 
 
+import pandas as pd
+tbl0 = pd.read_csv("files/input/tbl0.tsv", sep = "\t")
+
 def pregunta_03():
-    """
+
+    diccionario = {}
+    for letra in tbl0["c1"]:
+        if letra in diccionario:
+            diccionario[letra] += 1
+        else:
+            diccionario[letra] = 1
+    
+    dicc = dict(sorted(diccionario.items()))
+
+    return pd.Series(dicc)
+
+print(pregunta_03())
+
+"""
     ¿Cuál es la cantidad de registros por cada letra de la columna `c1` del
     archivo `tbl0.tsv`?
 

@@ -6,8 +6,17 @@ librerias de pandas para resolver las preguntas.
 """
 
 
+import pandas as pd
+tbl2 = pd.read_csv("files/input/tbl2.tsv", sep = "\t")
+
 def pregunta_12():
-    """
+    tbl2["c5"] = tbl2["c5a"] + ":" + tbl2["c5b"].astype(str)
+    agrupar = tbl2.groupby("c0")["c5"].apply(lambda x: sorted(x)).apply(lambda x: ','.join(x)).reset_index()
+    return agrupar
+
+print(pregunta_12())
+
+"""
     Construya una tabla que contenga `c0` y una lista separada por ','
     de los valores de la columna `c5a`  y `c5b` (unidos por ':') de la
     tabla `tbl2.tsv`.
